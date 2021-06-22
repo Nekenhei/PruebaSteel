@@ -1,4 +1,4 @@
-# Prueba Steel Sowftware
+# Prueba Steel Software
 
 Repositorio publico para **SteelSoftware**
 
