@@ -190,22 +190,43 @@ create procedure insertarLibro_SP
 	@idGenero int
 
 	AS
+
+	declare @editorialCheck int
+	declare @autorCheck int
+	set @editorialCheck = (select idEditorial from editorialesTb where idEditorial = @idEditorial)
+	set @autorCheck = (select idAutor from autoresTb where idAutor = @idAutor)
+
+	if	(@editorialCheck is null)
+		Begin
+			Select 'La Editorial no está registrada' as response
+		End
+	Else
+		Begin
+			if	(@autorCheck is null)
+				Begin
+					select 'El autor no está registrado' as response
+				End
+			else
+				begin
+					declare @maxLibrosEditorial int
+					declare @conteoLibrosEditorial int
+					set @maxLibrosEditorial = (select maxLibros from editorialesTb where idEditorial = @idEditorial)
+					set @conteoLibrosEditorial = (select COUNT(idLibro) from librosTb where idEditorial = @idEditorial)
+					if(@maxLibrosEditorial > @conteoLibrosEditorial)
+						BEGIN
+							SET NOCOUNT ON
+							insert into librosTb (tituloLibro, a_oLibro, numPaginas, idEditorial, idAutor, idGenero) values (@titulo, @a_o, @numPaginas, @idEditorial, @idAutor, @idGenero)
+							SELECT idLibro as response FROM librosTb where idLibro = (select max(idLibro) from librosTb)
+						END
+					ELSE
+						BEGIN
+							SET NOCOUNT ON
+							SELECT 0 as response
+						END
+				End
+		End
+
 	
-	declare @maxLibrosEditorial int
-	declare @conteoLibrosEditorial int
-	set @maxLibrosEditorial = (select maxLibros from editorialesTb where idEditorial = @idEditorial)
-	set @conteoLibrosEditorial = (select COUNT(idLibro) from librosTb where idEditorial = @idEditorial)
-	if(@maxLibrosEditorial > @conteoLibrosEditorial)
-		BEGIN
-			SET NOCOUNT ON
-			insert into librosTb (tituloLibro, a_oLibro, numPaginas, idEditorial, idAutor, idGenero) values (@titulo, @a_o, @numPaginas, @idEditorial, @idAutor, @idGenero)
-			SELECT idLibro FROM librosTb where idLibro = (select max(idLibro) from librosTb)
-		END
-	ELSE
-		BEGIN
-			SET NOCOUNT ON
-			SELECT 0
-		END
 GO
 
 /*actualizar Libros*/
@@ -225,13 +246,13 @@ create procedure actualizarLibro_SP
 	if(@flag is null)
 		BEGIN
 			SET NOCOUNT ON
-			SELECT 0
+			SELECT 0 as response
 		END
 	ELSE
 		BEGIN
 			SET NOCOUNT ON
 			update librosTb set tituloLibro = @titulo, a_oLibro = @a_o, numPaginas = @numPaginas, idEditorial = @idEditorial, idAutor = @idAutor, idGenero = @idGenero where idLibro = @idLibro
-			SELECT 1
+			SELECT 1 as response
 		END
 GO
 
@@ -246,13 +267,13 @@ create procedure eliminarLibro_SP
 	if(@flag is null)
 		BEGIN
 			SET NOCOUNT ON
-			SELECT 0
+			SELECT 0 as response
 		END
 	ELSE
 		BEGIN
 			SET NOCOUNT ON
 			delete from librosTb where idLibro = @idLibro
-			SELECT 1
+			SELECT 1 as response
 		END
 GO
 

@@ -1,4 +1,4 @@
-const connection = require('./connection');
+const connection = require('../Model/connection');
 const sql = require('mssql')
 
 
@@ -57,7 +57,7 @@ async function putLibro(Libro){
     try {
         let pool = await sql.connect(connection)
         let putLibro = await pool.request()
-        .input("idLibro", sql.Int, libro.idLibro)
+        .input("idLibro", sql.Int, Libro.idLibro)
         .input('titulo', sql.VarChar(200),Libro.titulo)
         .input('a_o', sql.Int,Libro.a_o)
         .input('numPaginas', sql.Int,Libro.numPaginas)
