@@ -1,31 +1,60 @@
-<!-- Button trigger modal -->
-<button type="button" data-bs-toggle="modal" data-bs-target="#editarLibroModal" class="btn btn-outline-warning btn-sm mx-1">Editar</button>
+  
+<form [formGroup]="createForm" (ngSubmit)="onSubmit(createForm.value)">
     
-    <!-- Modal -->
-    <div class="modal fade" id="editarLibroModal" tabindex="-1" aria-labelledby="editarLibroModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="editarLibroModalLabel">Editar Libro</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <form [formGroup]="createForm" (ngSubmit)="onSubmit(createForm.value)">
-                
-              <div *ngFor="let input of inputsList" class="mb-1 form-floating">
-                  <input type=`{{input.type}}` id=`{{input.id}}` class="form-control" placeholder="{{input.placeholder}}" formControlName="{{input.id}}" [attr.disabled]="input.status ? '' : null">
-                  <label for=`{{input.id}}`>{{input.text}}</label>
-              </div> 
-              <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                  <input type="submit" class="btn btn-primary" value="Guardar">                
-              </div>    
-            </form>
-            <div class="alert alert-danger" *ngIf="errorStatus" role="alert">{{mensaje}}</div>
-            <div class="alert alert-success" *ngIf="okStatus" role="alert">{{mensaje}}</div>
-          </div>
-          
-        </div>
+  <div *ngFor="let input of inputsList" class="mb-1 form-floating">
+      <input type=`{{input.type}}` id=`{{input.id}}` class="form-control" placeholder="{{input.placeholder}}" formControlName="{{input.id}}" [attr.disabled]="input.status ? '' : null">
+      <label for=`{{input.id}}`>{{input.text}}</label>
+  </div> 
+  <div class="me-auto">
+      <button type="button" data-bs-toggle="modal" data-bs-target="#eliminarLibroModal" class="btn btn-danger mx-1" data-bs-dismiss="modal">Eliminar</button>
+      <input type="submit" class="btn btn-warning" value="Editar" data-bs-toggle="modal" data-bs-target="#editLibroModal">                
+  </div>    
+</form>
+
+
+<div class="modal fade" id="editLibroModal" tabindex="-1" aria-labelledby="editLibroModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editLibroModalLabel">Edición del registro</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="alert alert-danger" *ngIf="errorStatus" role="alert">{{mensaje}}</div>
+        <div class="alert alert-success" *ngIf="okStatus" role="alert">{{mensaje}}</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ok</button>
       </div>
     </div>
-  
+  </div>
+</div>
+
+
+<div class="modal fade" id="eliminarLibroModal" tabindex="-1"  data-bs-backdrop="static" aria-labelledby="eliminarLibroModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="eliminarLibroModalLabel">Eliminar Libro de la colección</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <h5>Se va a eliminar el libro con ID: {{libroId}}</h5>
+        <form [formGroup]="deleteForm" (ngSubmit)="onSubmit(deleteForm.value)">
+            
+          <div *ngFor="let input of deleteList" class="mb-1 form-floating">
+              <input type=`{{input.type}}` id=`{{input.id}}` class="form-control" placeholder="{{input.placeholder}}" formControlName="{{input.id}}">
+              <label for=`{{input.id}}`>{{input.text}}</label>
+          </div> 
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              <button type="button" class="btn btn-danger" (click)="eliminarLibro(deleteForm.value)">Eliminar</button>               
+          </div>    
+        </form>
+        <div class="alert alert-danger" *ngIf="errorStatusDel" role="alert">{{mensajeDel}}</div>
+        <div class="alert alert-success" *ngIf="okStatusDel" role="alert">{{mensajeDel}}</div>
+      </div>
+      
+    </div>
+  </div>
+</div>

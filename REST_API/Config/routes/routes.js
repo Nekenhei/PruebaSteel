@@ -87,13 +87,13 @@ router.post('/libros', (request, response) => {
 router.put('/libros', (request, response) => {
     let Libro = {...request.body}
     
-    if(Libro.idLibro && Libro.titulo && Libro.a_o && Libro.numPaginas && Libro.idEditorial && Libro.idAutor && Libro.idGenero){
+    if(Libro.idLibro && Libro.tituloLibro && Libro.a_oLibro && Libro.numPaginas && Libro.idEditorial && Libro.idAutor && Libro.idGenero){
         librosWebService.putLibro(Libro).then(result => {
             let respuestaDB = result[0]
             if(respuestaDB[0].response==0){
                 response.json({"response": "El libro con ID "+Libro.idLibro+" no se encuentra en la base de datos"})
             }else{
-                response.json({"response": "Libro actualizado exitosamente"})
+                response.json({"response": "Libro actualizado exitosamente","Id":0})
             }
         },(error) => {
             console.log(error.message)
@@ -106,13 +106,13 @@ router.put('/libros', (request, response) => {
 })
 
 //Eliminar un libro en la BD
-router.delete('/libros', (request, response) => {
-    let Libro = {...request.body}
-    if (Libro.idLibro) {
-        librosWebService.deleteLibro(Libro).then(result => {
+router.delete('/libros/:idLibro', (request, response) => {
+    id = request.params.idLibro
+    if (id) {
+        librosWebService.deleteLibro(id).then(result => {
             let respuestaDB = result[0]
             if(respuestaDB[0].response==0){
-                response.json({"response": "El libro con ID "+Libro.idLibro+" no se encuentra en la base de datos"})
+                response.json({"response": "El libro con ID "+id+" no se encuentra en la base de datos"})
             }else{
                 response.json({"response": "Libro eliminado exitosamente"})
             }

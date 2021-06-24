@@ -232,8 +232,8 @@ GO
 /*actualizar Libros*/
 create procedure actualizarLibro_SP
 	@idLibro int,
-	@titulo varchar(200),
-	@a_o int,
+	@tituloLibro varchar(200),
+	@a_oLibro int,
 	@numPaginas int,
 	@idEditorial int,
 	@idAutor int,
@@ -251,7 +251,7 @@ create procedure actualizarLibro_SP
 	ELSE
 		BEGIN
 			SET NOCOUNT ON
-			update librosTb set tituloLibro = @titulo, a_oLibro = @a_o, numPaginas = @numPaginas, idEditorial = @idEditorial, idAutor = @idAutor, idGenero = @idGenero where idLibro = @idLibro
+			update librosTb set tituloLibro = @tituloLibro, a_oLibro = @a_oLibro, numPaginas = @numPaginas, idEditorial = @idEditorial, idAutor = @idAutor, idGenero = @idGenero where idLibro = @idLibro
 			SELECT 1 as response
 		END
 GO
@@ -277,14 +277,13 @@ create procedure eliminarLibro_SP
 		END
 GO
 
-
 /*::::::::::::::::::::::::
 Vistas
 ::::::::::::::::::::::::*/
 DROP VIEW IF EXISTS listarLibrosVw
 go
 create view listarLibrosVw as
-	select librosTb.idLibro, librosTb.tituloLibro, librosTb.a_oLibro, librosTb.numPaginas, editorialesTb.nombreEditorial, autoresTb.nombreAutor, generosTb.genero from librosTb
+	select librosTb.idLibro, librosTb.tituloLibro, librosTb.a_oLibro, librosTb.numPaginas, editorialesTb.idEditorial, editorialesTb.nombreEditorial, autoresTb.idAutor, autoresTb.nombreAutor, generostb.idGenero, generosTb.genero from librosTb
 	inner join editorialesTb on librosTb.idEditorial = editorialesTb.idEditorial
 	inner join autoresTb on librosTb.idAutor = autoresTb.idAutor
 	inner join generosTb on librosTb.idGenero = generosTb.idGenero;

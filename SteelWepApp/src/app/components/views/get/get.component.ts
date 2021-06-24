@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LibrosService } from '../../../services/api/libros.service'
-import { Libro } from '../../../models/libros'
+import { LibroCompleto } from '../../../models/libros'
+import { Router } from '@angular/router';
 
 
 
@@ -12,9 +13,9 @@ import { Libro } from '../../../models/libros'
 })
 export class GetComponent implements OnInit {
 
-  listBooks: Libro[] = [];
+  listBooks: LibroCompleto[] = [];
 
-  constructor(private apiLibros: LibrosService ) { }
+  constructor(private apiLibros: LibrosService,private router: Router ) { }
 
   ngOnInit(): void {
     this.apiLibros.getLibros().subscribe( respuesta => {
@@ -22,12 +23,10 @@ export class GetComponent implements OnInit {
     })
   }
 
-  editarLibro(id: number){
-    console.log(id)
+  redireccionar (id: number){
+    this.router.navigate([`editLibro/`+id])
   }
 
-  eliminarLibro(id: number){
-    console.log(id)
-  }
+  
 
 }

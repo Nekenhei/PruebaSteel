@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {LibrosService} from '../../../services/api/libros.service'
-import {LibroNuevo} from '../../../models/libros'
+import {Libro, LibroCompleto, LibroEliminado} from '../../../models/libros'
+import { Router, ActivatedRoute, Routes } from '@angular/router'
 
 @Component({
   selector: 'app-edit',
@@ -9,6 +10,10 @@ import {LibroNuevo} from '../../../models/libros'
   styleUrls: ['./edit.component.css']
 })
 export class EditComponent implements OnInit {
+  
+  libroEditable: LibroCompleto[] = [];
+  libroId : number = 0
+  libroEliminado: Libro[] = []
 
   createForm = new FormGroup({
     idLibro : new FormControl('',Validators.required),
@@ -19,6 +24,17 @@ export class EditComponent implements OnInit {
     idAutor : new FormControl('',Validators.required),
     idGenero : new FormControl('',Validators.required)
   })
+
+  deleteForm = new FormGroup({
+    validacion : new FormControl('', Validators.required)
+  })
+
+  deleteList = [{
+    text: `Escriba "OK" si está seguro de querer eliminar el libro`,
+    type: "text",
+    id: "validacion",
+    placeholder: ""
+  }]
 
   inputsList = [{
     text: "Id Libro",
@@ -61,19 +77,54 @@ export class EditComponent implements OnInit {
     placeholder: "Ej: Comedia"
   }]
 
-  constructor(private api: LibrosService) { }
+  constructor(private api: LibrosService, private activeRouter: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
+    let x = this.activeRouter.snapshot.paramMap.get('id')!
+    this.libroId = +x
+    this.api.getLibro(this.libroId).subscribe(respuesta =>{
+      this.libroEditable = respuesta
+      this.createForm.setValue({
+        "idLibro": this.libroEditable[0].idLibro,
+        "tituloLibro": this.libroEditable[0].tituloLibro,
+        "a_oLibro": this.libroEditable[0].a_oLibro,
+        "numPaginas": this.libroEditable[0].numPaginas,
+        "idEditorial": this.libroEditable[0].idEditorial,
+        "idAutor": this.libroEditable[0].idAutor,
+        "idGenero": this.libroEditable[0].idGenero
+  
+      })
+    })
+
+
   }
 
   errorStatus: boolean = false
   okStatus: boolean = false
   mensaje:string = ""
+  errorStatusDel: boolean = false
+  okStatusDel: boolean = false
+  mensajeDel:string = ""
+
+  eliminarLibro(form: any){
+    if(form.validacion.toLowerCase() =="ok"){
+      this.api.deleteLibros(this.libroId).subscribe(resultado => {
+         this.mensajeDel = resultado.response})
+      this.okStatusDel = true
+      this.errorStatusDel = false
+      }else{
+        this.errorStatusDel = true
+        this.okStatusDel = false
+        this.mensajeDel = "Se necesita confirmar la acción"
+        
+      }
+  }
+
+  
 
 
-
-  onSubmit(form: LibroNuevo){
-    this.api.postLibros(form).subscribe(resultado => {
+  onSubmit(form: LibroCompleto){
+    this.api.putLibros(form).subscribe(resultado => {
       this.mensaje = resultado.response
       if(resultado.Id == undefined){
         this.errorStatus = true

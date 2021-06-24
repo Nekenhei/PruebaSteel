@@ -97,8 +97,8 @@ async function putLibro(Libro){
         let pool = await sql.connect(connection)
         let putLibro = await pool.request()
         .input("idLibro", sql.Int, Libro.idLibro)
-        .input('tituloLibro', sql.VarChar(200),Libro.titulo)
-        .input('a_oLibro', sql.Int,Libro.a_o)
+        .input('tituloLibro', sql.VarChar(200),Libro.tituloLibro)
+        .input('a_oLibro', sql.Int,Libro.a_oLibro)
         .input('numPaginas', sql.Int,Libro.numPaginas)
         .input('idEditorial', sql.Int,Libro.idEditorial)
         .input('idAutor', sql.Int,Libro.idAutor)
@@ -113,11 +113,11 @@ async function putLibro(Libro){
 
 //Funcion delete - (Delete del CRUD)
 
-async function deleteLibro(Libro){
+async function deleteLibro(idLibro){
     try {
         let pool = await sql.connect(connection)
         let deleteLibro = await pool.request()
-        .input("idLibro", sql.Int, Libro.idLibro)
+        .input("idLibro", sql.Int, idLibro)
         .execute('eliminarLibro_SP')
         return deleteLibro.recordsets
     } catch (error) {

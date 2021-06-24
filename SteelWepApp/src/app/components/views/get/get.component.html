@@ -28,9 +28,7 @@
             <td>{{book.genero}}</td>
             <td>
               <div class="btn-group">
-                <app-edit></app-edit>
-                <app-delete [idLibro] = "book.idLibro"></app-delete>
-                
+                <button type="button" class="btn btn-outline-secondary btn-sm mx-1" (click)="redireccionar(book.idLibro)">Editar/Eliminar</button>
               </div>
             </td>
           </tr>
