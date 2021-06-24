@@ -1,4 +1,6 @@
 
+<!--Encabezado de la sección
+Asignación de NgModels para uso de pipes filtros-->
 <div class="row">
   <div class="col-12">
     <h1>Lista de Libros Steel Software</h1>
@@ -19,8 +21,10 @@
   </div>
 </div>
 
+<!-- se llama el componente creado en el template-->
 <app-create></app-create>
 
+<!--Tabla que mostrará el array de objetos-->
 <div class="table-responsive">
     <table class="table table-sm table-striped table-hover table-responsive">
         <thead class="table-dark" style="text-align: center" >
@@ -36,6 +40,7 @@
         </tr>
         </thead>
         <tbody>
+          <!-- Asignación y llamado de filtros pipes, nombreFiltro: valorInput.metodo()-->
           <tr *ngFor="let book of listBooks | filterTitulo: filterTitulo.toLowerCase() | filterAutor: filterAutor.toLowerCase() | filterEditorial: filterEditorial.toLowerCase() | filterGenero: filterGenero.toLowerCase()">
             <th style="text-align: center" scope="row">{{book.idLibro}}</th>
             <td>{{book.tituloLibro}}</td>

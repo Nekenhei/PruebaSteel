@@ -12,13 +12,16 @@ import { faEdit, faMinusSquare } from '@fortawesome/free-solid-svg-icons'
 })
 export class EditComponent implements OnInit {
 
+  //Declaración iconos Font-Awesome
   faEdit = faEdit
   faMinusSquare = faMinusSquare
   
+  //Declaración objeto-interfeces a usar
   libroEditable: LibroCompleto[] = [];
   libroId : number = 0
   libroEliminado: Libro[] = []
 
+  //Creación formulario reactive
   createForm = new FormGroup({
     idLibro : new FormControl('',Validators.required),
     tituloLibro : new FormControl('',Validators.required),
@@ -33,6 +36,7 @@ export class EditComponent implements OnInit {
     validacion : new FormControl('', Validators.required)
   })
 
+  //Arrays para llenado de formularios
   deleteList = [{
     text: `Escriba "OK" si está seguro de querer eliminar el libro`,
     type: "text",
@@ -83,6 +87,7 @@ export class EditComponent implements OnInit {
 
   constructor(private api: LibrosService, private activeRouter: ActivatedRoute, private router: Router) { }
 
+  //Llamado de API con ruta /:id para traer un solo objeto de tipo Libro
   ngOnInit(): void {
     let x = this.activeRouter.snapshot.paramMap.get('id')!
     this.libroId = +x
@@ -103,6 +108,7 @@ export class EditComponent implements OnInit {
 
   }
 
+  //Variables para alertas de modales
   errorStatus: boolean = false
   okStatus: boolean = false
   mensaje:string = ""
@@ -110,6 +116,7 @@ export class EditComponent implements OnInit {
   okStatusDel: boolean = false
   mensajeDel:string = ""
 
+  //Llamada API para eliminar objeto, recibe como parametro los valores del form encapsulados en objeto
   eliminarLibro(form: any){
     if(form.validacion.toLowerCase() =="ok"){
       this.api.deleteLibros(this.libroId).subscribe(resultado => {
@@ -126,7 +133,7 @@ export class EditComponent implements OnInit {
 
   
 
-
+  //Llamada API para editar objeto recibe como parametro los valores del form encapsulados en objeto con interface especifica
   onSubmit(form: LibroCompleto){
     this.api.putLibros(form).subscribe(resultado => {
       this.mensaje = resultado.response

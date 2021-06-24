@@ -1,6 +1,7 @@
   
 <form [formGroup]="createForm" (ngSubmit)="onSubmit(createForm.value)">
     
+  <!-- Formulario que recibe objetio Libro a editar/eliminar y loa signa a values de inputs-->
   <div *ngFor="let input of inputsList" class="mb-1 form-floating">
       <input type=`{{input.type}}` id=`{{input.id}}` class="form-control" placeholder="{{input.placeholder}}" formControlName="{{input.id}}" [attr.disabled]="input.status ? '' : null">
       <label for=`{{input.id}}`>{{input.text}}</label>
@@ -11,7 +12,7 @@
   </div>    
 </form>
 
-
+<!-- Modal para mostrar resultado de operacion Editar-->
 <div class="modal fade" id="editLibroModal" tabindex="-1" aria-labelledby="editLibroModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -30,7 +31,7 @@
   </div>
 </div>
 
-
+<!-- Modal para solicitar confirmación de operacion ELiminar-->
 <div class="modal fade" id="eliminarLibroModal" tabindex="-1"  data-bs-backdrop="static" aria-labelledby="eliminarLibroModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">

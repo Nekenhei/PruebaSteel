@@ -15,7 +15,7 @@
         </div>
         <div class="modal-body">
           <form [formGroup]="createForm" (ngSubmit)="onSubmit(createForm.value)">
-              
+              <!--Formulario de registro, recibe un objeto del tipo Libro para el ngFor-->
             <div *ngFor="let input of inputsList" class="mb-1 form-floating">
                 <input type=`{{input.type}}` id=`{{input.id}}` class="form-control" placeholder="{{input.placeholder}}" formControlName="{{input.id}}">
                 <label for=`{{input.id}}`>{{input.text}}</label>
@@ -25,6 +25,7 @@
                 <input type="submit" class="btn btn-primary" value="Guardar">                
             </div>    
           </form>
+          <!--Alertas para resultado de operacion-->
           <div class="alert alert-danger" *ngIf="errorStatus" role="alert">{{mensaje}}</div>
           <div class="alert alert-success" *ngIf="okStatus" role="alert">{{mensaje}}</div>
         </div>

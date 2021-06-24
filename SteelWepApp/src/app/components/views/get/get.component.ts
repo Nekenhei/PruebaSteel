@@ -15,14 +15,17 @@ import { faEdit } from '@fortawesome/free-solid-svg-icons'
 })
 export class GetComponent implements OnInit {
 
+  //Iconos font-awesome
   faEdit = faEdit
   
+  //Declaración variables que recibiran los valores del form para los filtros
   filterAutor =''
   filterTitulo =''
   filterEditorial =''
   filterGenero = ""
 
 
+  //Interface de libros para almacenar respuesta API
   listBooks: LibroCompleto[] = [];
 
   constructor(private apiLibros: LibrosService,private router: Router ) { }
@@ -33,6 +36,7 @@ export class GetComponent implements OnInit {
     })
   }
 
+  //redireccionamiento para uso de API Edit/Delete pasando un Id como parametro en la url
   redireccionar (id: number){
     this.router.navigate([`editLibro/`+id])
   }

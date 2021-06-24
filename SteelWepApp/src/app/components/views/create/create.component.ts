@@ -11,8 +11,10 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons'
 })
 export class CreateComponent implements OnInit {
 
+  //Declaración iconos Font Awesome
   faPlus = faPlus
 
+  //Formulario de creacion
   createForm = new FormGroup({
     tituloLibro : new FormControl('',Validators.required),
     a_oLibro : new FormControl('',Validators.required),
@@ -22,6 +24,7 @@ export class CreateComponent implements OnInit {
     idGenero : new FormControl('',Validators.required)
   })
 
+  //Array para construir formulario
   inputsList = [{
     text: "Nombre del libro",
     type: "text",
@@ -62,12 +65,13 @@ export class CreateComponent implements OnInit {
     
   }
 
+  //declaracion para alertas
   errorStatus: boolean = false
   okStatus: boolean = false
   mensaje:string = ""
 
 
-
+  //Llamada a API
   onSubmit(form: LibroNuevo){
     this.api.postLibros(form).subscribe(resultado => {
       this.mensaje = resultado.response

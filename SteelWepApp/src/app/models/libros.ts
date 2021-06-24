@@ -1,3 +1,5 @@
+//Interface para almacenar libro del tipo Visible (sin ids)
+
 export interface Libro {
     idLibro: number;
     tituloLibro: string;
@@ -8,6 +10,7 @@ export interface Libro {
     genero: string;
 }
 
+//Interface para enviar un Libro del tipo requerido por API (sin campos nombre)
 export interface LibroNuevo {
     tituloLibro: string;
     a_oLibro: number;
@@ -16,6 +19,8 @@ export interface LibroNuevo {
     idAutor: number;
     idGenero: number;
 }
+
+//Interface para almacenar todas las propiedades de un objeto Libro
 
 export interface LibroCompleto{
     idLibro: number;
@@ -30,6 +35,7 @@ export interface LibroCompleto{
     genero: string
 }
 
+//Interface para enviar id de Libro a eliminar 
 export interface LibroEliminado{
     idLibro: number
 }

@@ -9,12 +9,14 @@ import {faMobileAlt, faEnvelope} from '@fortawesome/free-solid-svg-icons'
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  
+
+  //Iconos Font-awesome  
   faGithub = faGithub
   faLinkedin = faLinkedin
   faMobileAlt = faMobileAlt
   faEnvelope = faEnvelope
 
+  //Arrays para llenado de nodos HTML
   socialMedia = [
     {
       label: "LinkedIn",

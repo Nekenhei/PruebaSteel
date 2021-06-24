@@ -4,6 +4,8 @@ import { HomeComponent } from './components/views/home/home.component'
 import { GetComponent } from './components/views/get/get.component'
 import { EditComponent } from '../app/components/views/edit/edit.component'
 
+
+//Almacenamiento y declaración de los enrutadores usables en la aplicación, encapsulados en variable para uso externo
 const routes: Routes = [
   
   {path: "",redirectTo: 'home',pathMatch: "full"},
@@ -17,6 +19,10 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
+
+
 export class AppRoutingModule { }
 export {routes}
+
+//Se requiere exportar cada componente por este campo
 export const routesComponents =  [HomeComponent,GetComponent,EditComponent]

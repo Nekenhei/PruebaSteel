@@ -11,6 +11,8 @@ import { faHome, faTable} from '@fortawesome/free-solid-svg-icons'
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+
+  //Declaración de iconos Font-Awesome
   routes = routes
   labels = labels
   faHome = faHome
@@ -22,6 +24,7 @@ export class HeaderComponent implements OnInit {
 
 }
 
+//Aray para llenado de header
 const labels = [
   {
     label:"Home",
