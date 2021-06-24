@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {LibrosService} from '../../../services/api/libros.service'
 import {LibroNuevo} from '../../../models/libros'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
 @Component({
   selector: 'app-create',
@@ -9,6 +10,8 @@ import {LibroNuevo} from '../../../models/libros'
   styleUrls: ['./create.component.css']
 })
 export class CreateComponent implements OnInit {
+
+  faPlus = faPlus
 
   createForm = new FormGroup({
     tituloLibro : new FormControl('',Validators.required),

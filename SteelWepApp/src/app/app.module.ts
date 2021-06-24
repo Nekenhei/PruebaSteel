@@ -11,6 +11,7 @@ import { FilterTituloPipe } from './components/pipes/titulo/filter-titulo.pipe'
 import { FilterAutorPipe } from './components/pipes/autor/filter-autor.pipe'
 import { FilterEditorialPipe } from './components/pipes/editorial/filter-editorial.pipe';
 import { FilterGeneroPipe } from './components/pipes/genero/filter-genero.pipe'
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { FilterGeneroPipe } from './components/pipes/genero/filter-genero.pipe'
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

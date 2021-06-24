@@ -7,7 +7,8 @@
       <div class="collapse navbar-collapse" id="navbarLibros">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item" *ngFor="let route of routes | slice: 1; let i=index">
-            <a class="nav-link" routerLinkActive="active" [routerLink]="route.path">{{labels[i]}}</a>
+            <a class="nav-link" routerLinkActive="active" [routerLink]="route.path">{{labels[i].label}} <fa-icon [icon]=labels[i].icon></fa-icon></a>
+            
           </li>
         </ul>
       </div>

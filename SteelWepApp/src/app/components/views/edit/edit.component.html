@@ -6,8 +6,8 @@
       <label for=`{{input.id}}`>{{input.text}}</label>
   </div> 
   <div class="me-auto">
-      <button type="button" data-bs-toggle="modal" data-bs-target="#eliminarLibroModal" class="btn btn-danger mx-1" data-bs-dismiss="modal">Eliminar</button>
-      <input type="submit" class="btn btn-warning" value="Editar" data-bs-toggle="modal" data-bs-target="#editLibroModal">                
+      <button type="button" data-bs-toggle="modal" data-bs-target="#eliminarLibroModal" class="btn btn-danger mx-1" data-bs-dismiss="modal"><fa-icon [icon]="faMinusSquare"></fa-icon> Eliminar</button>
+      <button type="submit" class="btn btn-warning"  data-bs-toggle="modal" data-bs-target="#editLibroModal"><fa-icon [icon]="faEdit"></fa-icon> Editar</button>
   </div>    
 </form>
 

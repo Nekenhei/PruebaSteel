@@ -1,1 +1,19 @@
-<p>home works!</p>
+<div class="bg-light py-5">
+    <div class="container px-3">
+        <div class="row gx5 justify-content-center">
+            <div class="col-lg-6">
+                <div class="text-center my-5">
+                    <h1>Hola, soy Esteban Giraldo</h1>
+                    <p class="about-me-text">Tecnólogo y estudiante de 9o semestre en <strong>Desarrollo de software</strong>, apasionado por la tecnología y el automovilismo, 
+                        actualmente cursando la carrera de <em>Desarrollo Web Full-Stack en NextU</em> y con experiencia de 5 años en el campo de la 
+                        analítica de datos y planificación laboral.</p>
+                    <h4 class="text-start">Contacto: </h4>
+                    <ul style="list-style-type:none" class="list-group list-group-horizontal">
+                        <li class="mx-1" *ngFor="let dato of contactos" ><fa-icon [icon]="dato.icon"></fa-icon> {{dato.value}}</li>
+                    </ul>
+                    <a class="mx-1 fa-2x text-dark"  *ngFor="let red of socialMedia" target="_blank" href="{{red.url}}"><fa-icon [icon]="red.icon" class="fa-lg"></fa-icon></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

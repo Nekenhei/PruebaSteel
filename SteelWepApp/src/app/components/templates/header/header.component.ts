@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { routes } from '../../../app-routing.module'
+import { faHome, faTable} from '@fortawesome/free-solid-svg-icons'
 
 
 
@@ -12,7 +13,8 @@ import { routes } from '../../../app-routing.module'
 export class HeaderComponent implements OnInit {
   routes = routes
   labels = labels
-
+  faHome = faHome
+  faTable = faTable
   constructor() { }
 
   ngOnInit(): void {
@@ -21,6 +23,11 @@ export class HeaderComponent implements OnInit {
 }
 
 const labels = [
-  "Home",
-  "Listar Libros"
+  {
+    label:"Home",
+    icon: faHome},
+  {
+    label:"Listar Libros",
+    icon:faTable}
+  
 ]

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LibrosService } from '../../../services/api/libros.service'
 import { LibroCompleto } from '../../../models/libros'
 import { Router } from '@angular/router';
+import { faEdit } from '@fortawesome/free-solid-svg-icons'
 
 
 
@@ -14,6 +15,8 @@ import { Router } from '@angular/router';
 })
 export class GetComponent implements OnInit {
 
+  faEdit = faEdit
+  
   filterAutor =''
   filterTitulo =''
   filterEditorial =''

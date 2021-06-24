@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {LibrosService} from '../../../services/api/libros.service'
 import {Libro, LibroCompleto, LibroEliminado} from '../../../models/libros'
 import { Router, ActivatedRoute, Routes } from '@angular/router'
+import { faEdit, faMinusSquare } from '@fortawesome/free-solid-svg-icons'
 
 @Component({
   selector: 'app-edit',
@@ -10,6 +11,9 @@ import { Router, ActivatedRoute, Routes } from '@angular/router'
   styleUrls: ['./edit.component.css']
 })
 export class EditComponent implements OnInit {
+
+  faEdit = faEdit
+  faMinusSquare = faMinusSquare
   
   libroEditable: LibroCompleto[] = [];
   libroId : number = 0
