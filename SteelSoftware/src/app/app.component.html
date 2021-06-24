@@ -1,0 +1,29 @@
+
+<nav>
+  <ul ngbNav #nav="ngbNav" class="nav-tabs" >
+
+    <li *ngFor="let route of routes; let i=index"  ngbNavItem>
+      <a ngbNavLink [routerLink]="route.path">{{lables[i]}}</a> 
+    </li>
+  </ul>
+</nav>
+
+<div class="container">
+  <div class="row">
+    
+
+
+<router-outlet>
+
+  
+
+</router-outlet>
+
+</div>
+</div>
+
+<footer>
+ Desarrollado por: Esteban Giraldo.
+ <br>
+ Para: Steel Software.
+</footer>

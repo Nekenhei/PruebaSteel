@@ -15,6 +15,45 @@ async function getLibros(){
     }
 }
 
+//Función get lista de generos - (Read del CRUD)
+
+async function getGeneros(){
+    try {
+        let pool = await sql.connect(connection)
+        let resultado = await pool.request().query("select idGenero, genero from generosTb order by idGenero")
+        //console.log(resultado.recordsets)
+        return resultado.recordsets
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+//Función get lista de autores - (Read del CRUD)
+
+async function getAutores(){
+    try {
+        let pool = await sql.connect(connection)
+        let resultado = await pool.request().query("select idAutor, nombreAutor from autoresTb order by idAutor")
+        //console.log(resultado.recordsets)
+        return resultado.recordsets
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+//Función get lista de editoriales - (Read del CRUD)
+
+async function getEditoriales(){
+    try {
+        let pool = await sql.connect(connection)
+        let resultado = await pool.request().query("select idEditorial, nombreEditorial from editorialesTb order by idEditorial")
+        //console.log(resultado.recordsets)
+        return resultado.recordsets
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 //Función get por codigo libro - (Read del CRUD)
 
 async function getLibro(idLibro){
@@ -37,8 +76,8 @@ async function newLibro(Libro){
     try {
         let pool = await sql.connect(connection)
         let newLibro = await pool.request()
-        .input('titulo', sql.VarChar(200),Libro.titulo)
-        .input('a_o', sql.Int,Libro.a_o)
+        .input('tituloLibro', sql.VarChar(200),Libro.tituloLibro)
+        .input('a_oLibro', sql.Int,Libro.a_oLibro)
         .input('numPaginas', sql.Int,Libro.numPaginas)
         .input('idEditorial', sql.Int,Libro.idEditorial)
         .input('idAutor', sql.Int,Libro.idAutor)
@@ -58,8 +97,8 @@ async function putLibro(Libro){
         let pool = await sql.connect(connection)
         let putLibro = await pool.request()
         .input("idLibro", sql.Int, Libro.idLibro)
-        .input('titulo', sql.VarChar(200),Libro.titulo)
-        .input('a_o', sql.Int,Libro.a_o)
+        .input('tituloLibro', sql.VarChar(200),Libro.titulo)
+        .input('a_oLibro', sql.Int,Libro.a_o)
         .input('numPaginas', sql.Int,Libro.numPaginas)
         .input('idEditorial', sql.Int,Libro.idEditorial)
         .input('idAutor', sql.Int,Libro.idAutor)
@@ -95,5 +134,8 @@ module.exports = {
     newLibro : newLibro,
     putLibro: putLibro,
     deleteLibro: deleteLibro,
-    getLibro: getLibro
+    getLibro: getLibro,
+    getAutores: getAutores,
+    getGeneros: getGeneros,
+    getEditoriales: getEditoriales
 }

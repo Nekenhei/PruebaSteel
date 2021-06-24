@@ -182,8 +182,8 @@ Procedimientos Almacenados
 
 /*Insertar Libros*/
 create procedure insertarLibro_SP
-	@titulo varchar(200),
-	@a_o int,
+	@tituloLibro varchar(200),
+	@a_oLibro int,
 	@numPaginas int,
 	@idEditorial int,
 	@idAutor int,
@@ -215,7 +215,7 @@ create procedure insertarLibro_SP
 					if(@maxLibrosEditorial > @conteoLibrosEditorial)
 						BEGIN
 							SET NOCOUNT ON
-							insert into librosTb (tituloLibro, a_oLibro, numPaginas, idEditorial, idAutor, idGenero) values (@titulo, @a_o, @numPaginas, @idEditorial, @idAutor, @idGenero)
+							insert into librosTb (tituloLibro, a_oLibro, numPaginas, idEditorial, idAutor, idGenero) values (@tituloLibro, @a_oLibro, @numPaginas, @idEditorial, @idAutor, @idGenero)
 							SELECT idLibro as response FROM librosTb where idLibro = (select max(idLibro) from librosTb)
 						END
 					ELSE

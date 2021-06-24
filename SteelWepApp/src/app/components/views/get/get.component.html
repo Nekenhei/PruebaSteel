@@ -1,0 +1,39 @@
+
+<h1>Lista de Libros Steel Software</h1>
+
+<app-create></app-create>
+
+<div class="table-responsive">
+    <table class="table table-sm table-striped table-hover table-responsive">
+        <thead class="table-dark" style="text-align: center" >
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Titulo</th>
+          <th scope="col">Año</th>
+          <th scope="col"># Paginas</th>
+          <th scope="col">Editorial</th>
+          <th scope="col">Autor</th>
+          <th scope="col">Genero</th>
+          <th scope="col">Acción</th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let book of listBooks">
+            <th style="text-align: center" scope="row">{{book.idLibro}}</th>
+            <td>{{book.tituloLibro}}</td>
+            <td style="text-align: center">{{book.a_oLibro}}</td>
+            <td style="text-align: center">{{book.numPaginas}}</td>
+            <td>{{book.nombreEditorial}}</td>
+            <td>{{book.nombreAutor}}</td>
+            <td>{{book.genero}}</td>
+            <td>
+              <div class="btn-group">
+                <app-edit></app-edit>
+                <app-delete [idLibro] = "book.idLibro"></app-delete>
+                
+              </div>
+            </td>
+          </tr>
+          </tbody>
+      </table>
+</div>

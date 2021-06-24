@@ -16,7 +16,8 @@ Se llevaron a cabo los siguientes puentos:
     * Cors: gestor de conexiones
     * Express: framework de NodeJs
     * mssql: driver para SQL Server
-    * nodemon: utlidad para ejecutar NodeJS en liveserver
+    * nodemon: utlidad para ejecutar NodeJS en liveserver (solo disponible en dev)
+    * morgan: middleware para el registro log de las conexiones
     * tedious: paquete para protocolo TDS  
    * Se recomienda el uso de POSTMAN para consumo de API
 * Diseño de WebPage para consumo de la API REST
@@ -37,7 +38,7 @@ npm install
 
 Ejecutar nodemon sobre archivo index.js
 ```
-nodemon index.js
+npm run dev
 ```
 
 

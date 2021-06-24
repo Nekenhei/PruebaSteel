@@ -1,0 +1,40 @@
+
+
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">Id</th>
+    <th scope="col">Titulo</th>
+    <th scope="col">Año</th>
+    <th scope="col"># Paginas</th>
+    <th scope="col">Editorial</th>
+    <th scope="col">Autor</th>
+    <th scope="col">Genero</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let book of listBooks">
+      <th scope="row">{{book.idLibro}}</th>
+      <td>{{book.tituloLibro}}</td>
+      <td>{{book.a_oLibro}}</td>
+      <td>{{book.numPaginas}}</td>
+      <td>{{book.nombreEditorial}}</td>
+      <td>{{book.nombreAutor}}</td>
+      <td>{{book.genero}}</td>
+    </tr>
+    </tbody>
+</table>
+
+<!--
+<tbody>
+  <tr *ngFor="let book of books">
+    <th scope="row">{{book.idLibro}}</th>
+    <td><ngb-highlight [result]="book.tituloLibro" [term]="filter.value"></ngb-highlight></td>
+    <td>{{book.a_oLibro}}</td>
+    <td>{{book.numPaginas}}</td>
+    <td><ngb-highlight [result]="book.nombreEditorial" [term]="filter.value"></ngb-highlight>{{book.nombreEditorial}}</td>
+    <td><ngb-highlight [result]="book.nombreAutor" [term]="filter.value"></ngb-highlight>{{book.nombreAutor}}</td>
+    <td><ngb-highlight [result]="book.genero" [term]="filter.value"></ngb-highlight>{{book.genero}}</td>
+  </tr>
+  </tbody>-->

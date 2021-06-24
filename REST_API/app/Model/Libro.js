@@ -2,8 +2,8 @@ class Libro {
     
     constructor(
         idLibro,
-        titulo,
-        a_o,
+        tituloLibro,
+        a_oLibro,
         numPaginas,
         idEditorial,
         idAutor,
@@ -11,8 +11,8 @@ class Libro {
         
         
         {this.idLibro,
-        this.titulo,
-        this.a_o,
+        this.tituloLibro,
+        this.a_oLibro,
         this.numPaginas,
         this.idEditorial,
         this.idAutor,

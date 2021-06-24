@@ -18,6 +18,36 @@ router.get('/libros', (request, response) => {
     })
 })
 
+//Listar todos los autores
+router.get('/Autores', (request, response) => {
+    librosWebService.getAutores().then(result => {
+        response.json(result[0])
+    },(error) => {
+        console.log(error.message)
+        response.json(error.message)
+    })
+})
+
+//Listar todos los libros
+router.get('/Generos', (request, response) => {
+    librosWebService.getGeneros().then(result => {
+        response.json(result[0])
+    },(error) => {
+        console.log(error.message)
+        response.json(error.message)
+    })
+})
+
+//Listar todos los libros
+router.get('/Editoriales', (request, response) => {
+    librosWebService.getEditoriales().then(result => {
+        response.json(result[0])
+    },(error) => {
+        console.log(error.message)
+        response.json(error.message)
+    })
+})
+
 //Listar un solo libro
 router.get('/libros/:idLibro', (request, response) => {
     librosWebService.getLibro(request.params.idLibro).then(result => {
@@ -32,21 +62,24 @@ router.get('/libros/:idLibro', (request, response) => {
 //Insertar un libro en la BD
 router.post('/libros', (request, response) => {
     let Libro = {...request.body}
-    if(Libro.titulo && Libro.a_o && Libro.numPaginas && Libro.idEditorial && Libro.idAutor && Libro.idGenero){
+    if(Libro.tituloLibro && Libro.a_oLibro && Libro.numPaginas && Libro.idEditorial && Libro.idAutor && Libro.idGenero){
+        
         librosWebService.newLibro(Libro).then(result => {
+            
             let respuestaDB = result[0]
             if(respuestaDB[0].response==0){
-                response.json({"Response": "No es posible registrar el libro, se alcanzó el maximo permitido"})
+                response.json({"response": "No es posible registrar el libro, se alcanzó el maximo permitido"})
             }else{
-                response.json({"Response": "Libro registrado exitosamente","Id":respuestaDB[0].response})
+                response.json({"response": "Libro registrado exitosamente","Id":respuestaDB[0].response})
             }
         },(error) => {
+            console.log(Libro.tituloLibro);
             console.log(error.message)
             response.json(error.message)
         })
         //response.json(Libro.titulo)
     }else{
-        response.json("Formulario incompleto")
+        response.json({"response": "Formulario incompleto"})
     }
 })
 
@@ -58,9 +91,9 @@ router.put('/libros', (request, response) => {
         librosWebService.putLibro(Libro).then(result => {
             let respuestaDB = result[0]
             if(respuestaDB[0].response==0){
-                response.json({"Response": "El libro con ID "+Libro.idLibro+" no se encuentra en la base de datos"})
+                response.json({"response": "El libro con ID "+Libro.idLibro+" no se encuentra en la base de datos"})
             }else{
-                response.json({"Response": "Libro actualizado exitosamente"})
+                response.json({"response": "Libro actualizado exitosamente"})
             }
         },(error) => {
             console.log(error.message)
@@ -68,7 +101,7 @@ router.put('/libros', (request, response) => {
         })
         //response.json(Libro.titulo)
     }else{
-        response.json("Formulario incompleto")
+        response.json({"response": "Formulario incompleto"})
     }
 })
 
@@ -79,9 +112,9 @@ router.delete('/libros', (request, response) => {
         librosWebService.deleteLibro(Libro).then(result => {
             let respuestaDB = result[0]
             if(respuestaDB[0].response==0){
-                response.json({"Response": "El libro con ID "+Libro.idLibro+" no se encuentra en la base de datos"})
+                response.json({"response": "El libro con ID "+Libro.idLibro+" no se encuentra en la base de datos"})
             }else{
-                response.json({"Response": "Libro eliminado exitosamente"})
+                response.json({"response": "Libro eliminado exitosamente"})
             }
             response.json(result[0])
         },(error) => {

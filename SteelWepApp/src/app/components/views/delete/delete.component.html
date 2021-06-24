@@ -1,0 +1,32 @@
+<!--<button type="button" (click)="editarLibro(book.idLibro)" class="btn btn-outline-warning btn-sm">Editar</button>-->
+<button type="button" data-bs-toggle="modal" data-bs-target="#eliminarLibroModal" class="btn btn-outline-danger btn-sm">Eliminar</button>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="eliminarLibroModal" tabindex="-1" aria-labelledby="eliminarLibroModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="eliminarLibroModalLabel">Eliminar Libro de la colección</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <h5>Se va a eliminar el libro con id:</h5>
+            <form [formGroup]="createForm" (ngSubmit)="onSubmit(createForm.value)">
+                
+              <div *ngFor="let input of inputsList" class="mb-1 form-floating">
+                  <input type=`{{input.type}}` id=`{{input.id}}` class="form-control" placeholder="{{input.placeholder}}" formControlName="{{input.id}}">
+                  <label for=`{{input.id}}`>{{input.text}}</label>
+              </div> 
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                  <input type="submit" class="btn btn-danger" value="Eliminar">                
+              </div>    
+            </form>
+            <div class="alert alert-danger" *ngIf="errorStatus" role="alert">{{mensaje}}</div>
+            <div class="alert alert-success" *ngIf="okStatus" role="alert">{{mensaje}}</div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  
