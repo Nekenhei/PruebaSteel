@@ -57,7 +57,7 @@ Acceder a http://localhost:4200/
 
 URL Endpoint: 
 ```
-http://localhost:5000/API/libros
+http://localhost:5000/API
 ```
 
 Rutas API:
