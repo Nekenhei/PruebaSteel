@@ -6,12 +6,19 @@ import { Router } from '@angular/router';
 
 
 
+
 @Component({
   selector: 'app-get',
   templateUrl: './get.component.html',
   styleUrls: ['./get.component.css']
 })
 export class GetComponent implements OnInit {
+
+  filterAutor =''
+  filterTitulo =''
+  filterEditorial =''
+  filterGenero = ""
+
 
   listBooks: LibroCompleto[] = [];
 

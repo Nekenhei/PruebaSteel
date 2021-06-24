@@ -1,5 +1,23 @@
 
-<h1>Lista de Libros Steel Software</h1>
+<div class="row">
+  <div class="col-12">
+    <h1>Lista de Libros Steel Software</h1>
+  </div>
+  <div class="row">
+    <div class="col-md-3 col-12 my-auto">
+      <input type="text" name="barraBusqueda" id="filterTitulo" placeholder="Titulo..." class="form-control" [(ngModel)]="filterTitulo" >
+    </div>
+    <div class="col-md-3 col-12 my-auto">
+      <input type="text" name="barraBusqueda" id="filterEditorial" placeholder="Editorial..." class="form-control" [(ngModel)]="filterEditorial" >
+    </div>
+    <div class="col-md-3 col-12 my-auto">
+      <input type="text" name="barraBusqueda" id="filterAutor" placeholder="Autor..." class="form-control" [(ngModel)]="filterAutor" >
+    </div>
+    <div class="col-md-3 col-12 my-auto">
+      <input type="text" name="barraBusqueda" id="filterGenero" placeholder="Genero..." class="form-control" [(ngModel)]="filterGenero" >
+    </div>
+  </div>
+</div>
 
 <app-create></app-create>
 
@@ -18,7 +36,7 @@
         </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let book of listBooks">
+          <tr *ngFor="let book of listBooks | filterTitulo: filterTitulo.toLowerCase() | filterAutor: filterAutor.toLowerCase() | filterEditorial: filterEditorial.toLowerCase() | filterGenero: filterGenero.toLowerCase()">
             <th style="text-align: center" scope="row">{{book.idLibro}}</th>
             <td>{{book.tituloLibro}}</td>
             <td style="text-align: center">{{book.a_oLibro}}</td>
